@@ -1,0 +1,38 @@
+﻿@model AcunMedyaAkademiPortfolio.Models.TblTestimonial
+
+@{
+    ViewBag.Title = "UpdateTestimonial";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<h3>Yeni Referans Girişi</h3>
+
+<form method="post" enctype="multipart/form-data">
+    <label>Referans İdsi</label>
+    <input type="text" class="form-control" name="TestimonialId" value="@Model.TestimonialId" />
+    <label>Referans Adı</label>
+    <input type="text" class="form-control" name="TestimonialName" value="@Model.TestimonialName" />
+
+    <label>Referans Ünvanı</label>
+    <input type="text" class="form-control" name="TestimonialTitle" value="@Model.TestimonialTitle" />
+
+    <label>Referans Açıklaması</label>
+    <input type="text" class="form-control" name="TestimonialDescription" value="@Model.TestimonialDescription" />
+
+    <label for="formFile" class="form-label">Referans Görseli</label>
+
+    <input class="form-control" type="file" name="TestimonialImg" id="formFile" onchange="previewImage(event)">
+    <img id="preview" src="@Model.TestimonialImg" alt="Önizleme" style="max-width: 100px; margin-top: 10px; display: none;">
+
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(event.target.files[0]);
+            preview.style.display = 'block';
+        }
+    </script>
+
+
+    <button class="btn btn-info mt-5">Referans Güncelle</button>
+</form>

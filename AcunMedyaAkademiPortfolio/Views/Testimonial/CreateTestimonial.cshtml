@@ -1,0 +1,35 @@
+﻿@model AcunMedyaAkademiPortfolio.Models.TblTestimonial
+
+@{
+    ViewBag.Title = "CreateTestimonial";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h3>Yeni Referans Girişi</h3>
+
+<form method="post" enctype="multipart/form-data">
+    <label>Referans Adı</label>
+    <input type="text" class="form-control" name="TestimonialName" />
+
+    <label>Referans Ünvanı</label>
+    <input type="text" class="form-control" name="TestimonialTitle" />
+
+    <label>Referans Açıklaması</label>
+    <input type="text" class="form-control" name="TestimonialDescription" />
+
+    <label for="formFile" class="form-label">Referans Görseli</label>
+
+    <input class="form-control" type="file" name="TestimonialImg" id="formFile" onchange="previewImage(event)">
+    <img id="preview" src="#" alt="Önizleme" style="max-width: 100px; margin-top: 10px; display: none;">
+
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(event.target.files[0]);
+            preview.style.display = 'block';
+        }
+    </script>
+
+
+    <button class="btn btn-info mt-5">Yeteneği Kaydet</button>
+</form>
