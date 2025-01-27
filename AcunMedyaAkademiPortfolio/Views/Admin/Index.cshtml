@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Yönetim Paneline Hoşgeldiniz!</h2>
+
+<p>Portfolyo projemin yönetim paneli ile veri ekleme, çıkarma ve güncelleme yapabilirsiniz.</p>
+
+<div class="alert alert-danger">Proje Sayısı : @ViewBag.categoryCount</div>
+<div class="alert alert-info">Referans Sayısı : @ViewBag.testimonialCount</div>
+<div class="alert alert-primary">Yetenek Sayısı : @ViewBag.skillCount</div>
+<div class="alert alert-secondary">Servis Sayısı : @ViewBag.serviceCount</div>
+<div class="alert alert-warning"> Son Eklenen Yetenek : @ViewBag.lastSkillTitleName</div>
+
+<a href="/Project/CreateProject"><button type="button" class="btn btn-primary">Proje Ekle +</button></a>
+<a href="/Service/CreateService"><button type="button" class="btn btn-primary">Servis Ekle +</button>
+<a href="/Skill/CreateSkill"><button type="button" class="btn btn-primary">Yetenek Ekle +</button>
+<a href="/Contact/MessageList"><button type="button" class="btn btn-primary"><i class="fa fa-commenting-o" aria-hidden="true"></i> Gelen Mesajlar (@ViewBag.message)</button>
+

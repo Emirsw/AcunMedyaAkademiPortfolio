@@ -8133,7 +8133,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.8;
   font-weight: normal;
@@ -8165,7 +8165,7 @@ h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
   color: #000; }
 
 .ftco-section {
@@ -8213,16 +8213,17 @@ h1, h2, h3, h4, h5,
   width: 100%; }
 
 #sidebar {
-  min-width: 270px;
-  max-width: 270px;
-  background: #3e64ff;
-  color: #fff;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s; }
+    min-width: 270px;
+    max-width: 270px;
+    background: #37414b;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
   #sidebar.active {
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 100px;
+    max-width: 100px;
     text-align: center; }
     #sidebar.active ul.components li {
       font-size: 14px; }
@@ -8320,8 +8321,10 @@ a[data-toggle="collapse"] {
   transition: all 0.3s; }
 
 .btn.btn-primary {
-  background: #3e64ff;
-  border-color: #3e64ff; }
-  .btn.btn-primary:hover, .btn.btn-primary:focus {
-    background: #3e64ff !important;
-    border-color: #3e64ff !important; }
+    background: #37414b;
+    border-color: #37414b;
+}
+    .btn.btn-primary:hover, .btn.btn-primary:focus {
+        background: #212529 !important;
+        border-color: #212529 !important;
+    }

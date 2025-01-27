@@ -1,0 +1,66 @@
+﻿@model List<AcunMedyaAkademiPortfolio.Models.TblAbout>
+
+<section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-6 col-lg-5 d-flex">
+                <div class="img-about img d-flex align-items-stretch">
+                    <div class="overlay"></div>
+                    <div class="img d-flex align-self-stretch align-items-center" style="background-image: url(https://i.ibb.co/jHSJbQ4/Whats-App-G-rsel-2025-01-27-saat-14-10-32-2d69e47b.jpg);">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-7 pl-md-4 pl-lg-5 py-5">
+                <div class="py-md-5">
+                    <div class="row justify-content-start pb-3">
+                        <div class="col-md-12 heading-section ftco-animate">
+                            <h2 class="mb-4" style="font-size: 34px; text-transform: capitalize;">Hakkımda</h2>
+                            <p>
+                                @foreach (var item in Model)
+                                {
+                                    @item.AboutDesc
+                                }
+                            </p>
+
+                            <ul class="about-info mt-4 px-md-0 px-2">
+                                <li class="d-flex"><span>İsim:</span> <span>Mustafa Emir Çebi</span></li>
+                                <li class="d-flex"><span>Doğum Tarihi:</span> <span>27 Nisan 2004</span></li>
+                                <li class="d-flex"><span>Adres:</span> <span>İstanbul</span></li>
+                                <li class="d-flex"><span>Email:</span> <span>hi@mecebi.com.tr</span></li>
+                                <li class="d-flex"><span>Telefon: </span> <span>+1-2234-5678-9-0</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="my-interest d-lg-flex w-100">
+                                <div class="interest-wrap d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="flaticon-listening"></span>
+                                    </div>
+                                    <div class="text">Müzik</div>
+                                </div>
+                                <div class="interest-wrap d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="flaticon-suitcases"></span>
+                                    </div>
+                                    <div class="text">Seyahat</div>
+                                </div>
+                                <div class="interest-wrap d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="flaticon-video-player"></span>
+                                    </div>
+                                    <div class="text">Oyun</div>
+                                </div>
+                                <div class="interest-wrap d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="flaticon-football"></span>
+                                    </div>
+                                    <div class="text">Spor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

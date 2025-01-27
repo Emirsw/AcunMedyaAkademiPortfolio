@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Proje Ekle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Proje Ekle</h2>
+
+
+<form method="Post">
+    <label>Proje Adı</label>
+    <input type="text" class="form-control" name="ProjectName" />
+
+    <label>Proje Resmi</label>
+    <input type="text" class="form-control" name="ProjectImageUrl" />
+
+    <label>Proje Kategorisi</label>
+    <input type="text" class="form-control" name="ProjectCategoryId" />
+
+    <button class="btn btn-info mt-5">Projeyi Kaydet</button>
+
+</form>

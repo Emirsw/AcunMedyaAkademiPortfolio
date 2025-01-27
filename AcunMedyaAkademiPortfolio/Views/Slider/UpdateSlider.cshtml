@@ -1,0 +1,20 @@
+﻿﻿@model AcunMedyaAkademiPortfolio.Models.TblFeature
+
+@{
+    ViewBag.Title = "UpdateSlider";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Slider Güncelle</h2>
+
+<form method="post">
+    <input type="text" class="form-control" name="FeatureId" hidden value="@Model.FeatureId" />
+    <label>Başlık</label>
+    <input type="text" class="form-control" name="FeatureTitle" value="@Model.FeatureTitle" />
+    <label>Açıklama</label>
+    <input type="text" class="form-control" name="FeatureDesc" value="@Model.FeatureDesc" />
+    <label>Görsel</label>
+    <input type="text" class="form-control" name="FeatureImg" value="@Model.FeatureImg" />
+    <br />
+    <button class="btn btn-info"> Slider Güncelle</button>
+</form>

@@ -1,27 +1,38 @@
-﻿
+﻿@model List<AcunMedyaAkademiPortfolio.Models.TblContact>
+
 @{
-    Layout = null;
+    ViewBag.Title = "Mesajlar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
 }
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<div class="container">
-    <table class="table table-bordered">
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Gönderen</th>
+        <th>Mail</th>
+        <th>Konu</th>
+        <th>Mesaj</th>
+        <th>Tarih</th>
+        <th>Sil</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>Mesaj No</th>
-            <th>Gönderen</th>
-            <th>Konu</th>
-            <th>Mesajı Aç</th>
+            <td>@item.ContactId</td>
+            <td>@item.ContactName</td>
+            <td>@item.ContactMail</td>
+            <td>@item.ContactSubject</td>
+            <td>@item.ContactMessage</td>
+            <td>@item.CreateDate</td>
+            <td>
+                <form action="/Contact/DeleteContact" method="post">
+                    <input type="hidden" name="id" value="@item.ContactId" />
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                </form>
+            </td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Mustafa Emir Çebi</td>
-            <td>Konu</td>
-            <td><a href="#" class="btn btn-warning">Mesajı Aç</a></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Mustafa Emir Çebi</td>
-            <td>Konu</td>
-            <td><a href="#" class="btn btn-warning">Mesajı Aç</a></td>
-        </tr>
-    </table>
-</div>
+    }
+
+
+</table>
+

@@ -48,18 +48,16 @@
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DbProductAcunMedya.dbo.TblContact' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TblContact">
           <Key>
             <PropertyRef Name="ContactId" />
           </Key>
-          <Property Name="ContactId" Type="int" Nullable="false" />
-          <Property Name="ContactName" Type="varchar" MaxLength="50" />
-          <Property Name="ContactMail" Type="varchar" MaxLength="50" />
-          <Property Name="ContactSubject" Type="varchar" MaxLength="150" />
-          <Property Name="ContactMessage" Type="varchar" MaxLength="150" />
-          <Property Name="CreateDate" Type="date" />
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactMail" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactSubject" Type="nvarchar" MaxLength="200" />
+          <Property Name="ContactMessage" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="TblFeature">
           <Key>
@@ -98,6 +96,15 @@ warning 6002: The table/view 'DbProductAcunMedya.dbo.TblContact' does not have a
           <Property Name="ProjectImageUrl" Type="varchar" MaxLength="150" />
           <Property Name="ProjectCategoryId" Type="int" />
         </EntityType>
+        <EntityType Name="TblService">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceIcon" Type="varchar" MaxLength="250" />
+          <Property Name="ServiceTitle" Type="varchar" MaxLength="50" />
+          <Property Name="ServiceDesc" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="TblSkill">
           <Key>
             <PropertyRef Name="SkillId" />
@@ -131,29 +138,52 @@ warning 6002: The table/view 'DbProductAcunMedya.dbo.TblContact' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="GetLastSkillTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DbProductAcunMedyaModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAbout" EntityType="Self.TblAbout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAdress" EntityType="Self.TblAdress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblBanner" EntityType="Self.TblBanner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblCategory" EntityType="Self.TblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblContact" EntityType="Self.TblContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblFeature" EntityType="Self.TblFeature" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblHobby" EntityType="Self.TblHobby" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblProfile" EntityType="Self.TblProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblProject" EntityType="Self.TblProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblService" EntityType="Self.TblService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSkill" EntityType="Self.TblSkill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTestimonial" EntityType="Self.TblTestimonial" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TblContact" EntityType="Self.TblContact" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TblContact].[ContactId] AS [ContactId], 
-    [TblContact].[ContactName] AS [ContactName], 
-    [TblContact].[ContactMail] AS [ContactMail], 
-    [TblContact].[ContactSubject] AS [ContactSubject], 
-    [TblContact].[ContactMessage] AS [ContactMessage], 
-    [TblContact].[CreateDate] AS [CreateDate]
-    FROM [dbo].[TblContact] AS [TblContact]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_TblProject_TblCategory" Association="Self.FK_TblProject_TblCategory">
             <End Role="TblCategory" EntitySet="TblCategory" />
             <End Role="TblProject" EntitySet="TblProject" />
@@ -271,11 +301,11 @@ warning 6002: The table/view 'DbProductAcunMedya.dbo.TblContact' does not have a
             <PropertyRef Name="ContactId" />
           </Key>
           <Property Name="ContactId" Type="Int32" Nullable="false" />
-          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactSubject" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ContactMessage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="ContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactMail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactSubject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContactMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_TblProject_TblCategory">
           <End Role="TblCategory" Type="Self.TblCategory" Multiplicity="0..1" />
@@ -307,7 +337,58 @@ warning 6002: The table/view 'DbProductAcunMedya.dbo.TblContact' does not have a
             <End Role="TblProject" EntitySet="TblProject" />
           </AssociationSet>
           <FunctionImport Name="GetLastSkillTitle" ReturnType="Collection(String)" />
+          <EntitySet Name="TblService" EntityType="DbProductAcunMedyaModel.TblService" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DbProductAcunMedyaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DbProductAcunMedyaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <EntityType Name="TblService">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceIcon" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -439,6 +520,40 @@ warning 6002: The table/view 'DbProductAcunMedya.dbo.TblContact' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetLastSkillTitle" FunctionName="DbProductAcunMedyaModel.Store.GetLastSkillTitle" />
+          <EntitySetMapping Name="TblService">
+            <EntityTypeMapping TypeName="DbProductAcunMedyaModel.TblService">
+              <MappingFragment StoreEntitySet="TblService">
+                <ScalarProperty Name="ServiceDesc" ColumnName="ServiceDesc" />
+                <ScalarProperty Name="ServiceTitle" ColumnName="ServiceTitle" />
+                <ScalarProperty Name="ServiceIcon" ColumnName="ServiceIcon" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbProductAcunMedyaModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbProductAcunMedyaModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbProductAcunMedyaModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbProductAcunMedyaModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbProductAcunMedyaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbProductAcunMedyaModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbProductAcunMedyaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbProductAcunMedyaModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbProductAcunMedyaModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
